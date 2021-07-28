@@ -25,7 +25,7 @@ async function handler(req, res) {
     //Return a promise to satisfy the Next.js requirements.
     return new Promise(resolve => {
         //Append the decoded_payload to data.json.
-        let appData = req.body.decoded_payload;
+        let appData = req.body.uplink_message.decoded_payload;
         fs.readFile('./data.json', (err, data) => {
             if (err) {
                 throw err;
