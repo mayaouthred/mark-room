@@ -9,6 +9,7 @@ interface Measurement {
     coordinates: any[];
 }
 
+//Displays the measurements stored in data.json as a list.
 class Location extends Component<{}, LocationState> {
 
     constructor(props: any) {

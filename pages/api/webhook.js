@@ -19,10 +19,13 @@ function runMiddleware(req, res, fn) {
 //Endpoint for TTN application webhook. Receives downlink messages and stores the decoded
 //payload in data.json.
 async function handler(req, res) {
+    //CORS handling.
     await runMiddleware(req, res, cors);
+
+    //Return a promise to satisfy the Next.js requirements.
     return new Promise(resolve => {
+        //Append the decoded_payload to data.json.
         let appData = req.body.decoded_payload;
-        console.log(appData);
         fs.readFile('./data.json', (err, data) => {
             if (err) {
                 throw err;
@@ -35,6 +38,7 @@ async function handler(req, res) {
                 }
             });
         });
+        //Return the promise and give a positive status to res.
         res.status(200).end();
         return resolve();
     })
