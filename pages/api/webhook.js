@@ -26,6 +26,7 @@ async function handler(req, res) {
     return new Promise(resolve => {
         //Append the decoded_payload to data.json.
         let appData = req.body.uplink_message.decoded_payload;
+        console.log(appData);
         fs.readFile('./data.json', (err, data) => {
             if (err) {
                 throw err;
