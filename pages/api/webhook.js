@@ -33,6 +33,7 @@ async function handler(req, res) {
             }
             let fileData = JSON.parse(data);
             fileData.values.push(appData);
+            console.log(fileData);
             fs.writeFile(path.join(process.cwd(), 'data.json'), JSON.stringify(fileData), (err)=> {
                 if (err) {
                     console.log(err);
