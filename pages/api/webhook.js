@@ -1,6 +1,6 @@
 import Cors from 'cors'
 import fs from 'fs'
-
+import path from 'path'
 const cors = Cors({
     methods: ['GET', 'POST', 'HEAD'],
 });
@@ -27,13 +27,13 @@ async function handler(req, res) {
         //Append the decoded_payload to data.json.
         let appData = req.body.uplink_message.decoded_payload;
         console.log(appData);
-        fs.readFile('./data.json', (err, data) => {
+        fs.readFile(path.join(process.cwd(), 'data.json'), (err, data) => {
             if (err) {
                 throw err;
             }
             let fileData = JSON.parse(data);
             fileData.values.push(appData);
-            fs.writeFile('./data.json', JSON.stringify(fileData), (err)=> {
+            fs.writeFile(path.join(process.cwd(), 'data.json'), JSON.stringify(fileData), (err)=> {
                 if (err) {
                     console.log(err);
                 }
